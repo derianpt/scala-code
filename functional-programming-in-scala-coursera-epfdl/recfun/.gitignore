@@ -74,3 +74,4 @@ fabric.properties
 # Custom addons
 *.cache
 target
+.idea/sonarlint/issuestore
