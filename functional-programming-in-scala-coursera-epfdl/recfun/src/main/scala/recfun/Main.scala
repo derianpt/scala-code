@@ -61,6 +61,8 @@ object Main {
 
   /**
     * Exercise 3
+    * Suboptimal solution because it only forms combinations from consecutive denominations. Doesn't support skipping of
+    * denominations. 
     */
   def countChange(money: Int, coins: List[Int]): Int = {
 
