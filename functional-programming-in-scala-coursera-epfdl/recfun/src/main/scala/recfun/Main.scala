@@ -8,7 +8,6 @@ object Main {
         print(pascal(col, row) + " ")
       println()
     }
-    println(countChange(4, List(1, 2)))
   }
 
   /**
@@ -61,40 +60,35 @@ object Main {
 
   /**
     * Exercise 3
-    * Suboptimal solution because it only forms combinations from consecutive denominations. Doesn't support skipping of
-    * denominations. 
     */
   def countChange(money: Int, coins: List[Int]): Int = {
-
-    def countWaysToChangeFromHead(balance: Int, sortedDenoms: List[Int]): Int = {
-      // if no money to return or no coins to use, then there are 0 ways
-      if (balance == 0 | sortedDenoms.isEmpty) {
-        0
-      } else {
-        // proceed to attempt and offer change for remaining amount
-        val remainder = balance - sortedDenoms.head
-        // if change overshot remainder, this is not a valid way
-        if (remainder < 0) {
-          0
-        } else if (remainder == 0) { // if remainder became 0, this is a valid way
-          1
-        } else { // continue to offer change using this denomination and with the next one.
-          countWaysToChangeFromHead(remainder, sortedDenoms) + countWaysToChangeFromHead(remainder, sortedDenoms.tail)
-        }
+    // if no money to return, return 1
+    if (money == 0) {
+      1
+    }
+    // if money is -ve, return 0
+    else if (money < 0) {
+      0
+    }
+    // if no coins to use, then there are 0 ways
+    else if (coins.isEmpty) {
+      0
+    }
+    // else continue to count ways.
+    else {
+      // proceed to attempt and offer change for remaining amount
+      // if current denomination is LTE balance, try offering change
+      if (coins.head <= money) {
+        // 1) continue to offer change using this denomination.
+        countChange(money - coins.head, coins) +
+          // 2) or skip this denomination and use the next one instead.
+          // if this step is run on the 2nd recursive call of the same denomination, it acts as if we are using this denomination
+          // plus the next denomination!! :)
+          countChange(money, coins.tail)
+      } // else skip this denomination straight away because impossible to offer change with it
+      else {
+        countChange(money, coins.tail)
       }
     }
-
-
-    // tail recursion to loop through list of sorted coins
-    def countTotalWaysToChange(sortedDenoms: List[Int], numWays: Int): Int = {
-      if (sortedDenoms.isEmpty) {
-        numWays
-      } else {
-        val numWaysFromCurrHead = countWaysToChangeFromHead(money, sortedDenoms)
-        countTotalWaysToChange(sortedDenoms.tail, numWays + numWaysFromCurrHead)
-      }
-    }
-
-    countTotalWaysToChange(coins.sorted, 0)
   }
 }
