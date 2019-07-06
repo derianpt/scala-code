@@ -2,37 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dac84139-fd4d-48ab-a6a9-e1e4aa4bc6ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__junit_junit_4_10_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_hamcrest_hamcrest_core_1_1_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_scala_lang_modules_scala_parser_combinators_2_11_1_0_4_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_scala_lang_modules_scala_xml_2_11_1_0_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_scala_lang_scala_library_2_11_12_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_scala_lang_scala_reflect_2_11_12_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_scalatest_scalatest_2_11_2_2_4_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/saveactions_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assignment.sbt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/CommonBuild.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/Courses.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/GradingFeedback.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/ScalaTestRunner.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/Settings.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/StudentBuild.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/StudentBuildLike.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/StyleChecker.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/build.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/buildSettings.sbt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/plugins.sbt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scalastyle/scalastyle_config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/common/package.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/patmat/Huffman.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/patmat/HuffmanSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -64,23 +34,41 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/patmat/Huffman.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="245" column="87" selection-start-line="245" selection-start-column="87" selection-end-line="245" selection-end-column="87" />
+            <state relative-caret-position="-316">
+              <caret line="94" column="48" selection-start-line="94" selection-start-column="45" selection-end-line="94" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/patmat/HuffmanSuite.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="54" column="64" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
+            <state relative-caret-position="615">
+              <caret line="53" column="8" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
               <folding>
                 <element signature="e#16#47#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest_2.11/2.2.4/scalatest_2.11-2.2.4-sources.jar!/org/scalatest/Transformer.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest_2.11/2.2.4/scalatest_2.11-2.2.4-sources.jar!/org/scalatest/OutcomeOf.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="481">
+              <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -105,6 +93,8 @@
       <find>::</find>
       <find>::</find>
       <find>convert</find>
+      <find>sort</find>
+      <find>asc</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -119,7 +109,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1366" />
     <option name="y" value="27" />
     <option name="width" value="960" />
@@ -387,20 +377,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1561871206369</updated>
-      <workItem from="1561871217111" duration="22273000" />
+      <workItem from="1561871217111" duration="23234000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="HuffmanSuite_combine_of_some_leaf_list - 2019.06.30 at 23h 49m 10s.xml">
-      <configuration name="HuffmanSuite.combine of some leaf list" configurationId="ScalaTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="HuffmanSuite_combine_of_some_leaf_list - 2019.06.30 at 23h 57m 03s.xml">
-      <configuration name="HuffmanSuite.combine of some leaf list" configurationId="ScalaTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="HuffmanSuite_decode_and_encode_a_very_short_text_should_be_identity - 2019.07.01 at 00h 33m 20s.xml">
-      <configuration name="HuffmanSuite.decode and encode a very short text should be identity" configurationId="ScalaTestRunConfiguration" />
-    </history-entry>
     <history-entry file="HuffmanSuite_decode_and_encode_a_very_short_text_should_be_identity - 2019.07.01 at 00h 39m 25s.xml">
       <configuration name="HuffmanSuite.decode and encode a very short text should be identity" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
@@ -422,9 +403,18 @@
     <history-entry file="ScalaTests_in_'patmat' - 2019.07.01 at 00h 54m 00s.xml">
       <configuration name="ScalaTests in 'patmat'" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
+    <history-entry file="HuffmanSuite_convert_should_build_the_correct_table - 2019.07.01 at 01h 14m 16s.xml">
+      <configuration name="HuffmanSuite.convert should build the correct table" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="HuffmanSuite_convert_should_build_the_correct_table - 2019.07.01 at 01h 16m 36s.xml">
+      <configuration name="HuffmanSuite.convert should build the correct table" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="HuffmanSuite_convert_should_build_the_correct_table - 2019.07.01 at 01h 16m 39s.xml">
+      <configuration name="HuffmanSuite.convert should build the correct table" configurationId="ScalaTestRunConfiguration" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22273000" />
+    <option name="totallyTimeSpent" value="23234000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="25" width="1920" height="1055" extended-state="6" />
@@ -547,20 +537,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/patmat/Huffman.scala">
+    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest_2.11/2.2.4/scalatest_2.11-2.2.4-sources.jar!/org/scalatest/Transformer.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="245" column="87" selection-start-line="245" selection-start-column="87" selection-end-line="245" selection-end-column="87" />
+        <state relative-caret-position="105">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scalatest/scalatest_2.11/2.2.4/scalatest_2.11-2.2.4-sources.jar!/org/scalatest/OutcomeOf.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/patmat/HuffmanSuite.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="54" column="64" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
+        <state relative-caret-position="615">
+          <caret line="53" column="8" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
           <folding>
             <element signature="e#16#47#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/patmat/Huffman.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-316">
+          <caret line="94" column="48" selection-start-line="94" selection-start-column="45" selection-end-line="94" selection-end-column="48" />
         </state>
       </provider>
     </entry>
