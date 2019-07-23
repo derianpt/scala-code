@@ -74,3 +74,4 @@ fabric.properties
 *.cache
 target/
 .idea/sonarlint/issuestore
+.idea/libraries
