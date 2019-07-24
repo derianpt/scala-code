@@ -75,3 +75,4 @@ fabric.properties
 target/
 .idea/sonarlint/issuestore
 .idea/libraries
+src/main/resources/wikipedia/wikipedia.dat
