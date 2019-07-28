@@ -24,12 +24,6 @@ object WikipediaRanking {
   val wikiRdd: RDD[WikipediaArticle] = sc.textFile(WikipediaData.filePath).map(WikipediaData.parse(_))
   val timing = new StringBuffer
 
-  /** Returns the number of articles on which the language `lang` occurs.
-    * Hint1: consider using method `aggregate` on RDD[T].
-    * Hint2: consider using method `mentionsLanguage` on `WikipediaArticle`
-    */
-  def occurrencesOfLang(lang: String, rdd: RDD[WikipediaArticle]): Int = ???
-
   def main(args: Array[String]) {
 
     /* Languages ranked according to (1) */
@@ -57,12 +51,30 @@ object WikipediaRanking {
    *   Note: this operation is long-running. It can potentially run for
    *   several seconds.
    */
-  def rankLangs(langs: List[String], rdd: RDD[WikipediaArticle]): List[(String, Int)] = ???
+  def rankLangs(langs: List[String], rdd: RDD[WikipediaArticle]): List[(String, Int)] = langs.map(lang => (lang, occurrencesOfLang(lang, rdd))).
+    sortBy {
+      case (_, occurrence) => occurrence
+    }(Ordering[Int].reverse)
+
+  /** Returns the number of articles on which the language `lang` occurs.
+    * Hint1: consider using method `aggregate` on RDD[T].
+    * Hint2: consider using method `mentionsLanguage` on `WikipediaArticle`
+    */
+  def occurrencesOfLang(lang: String, rdd: RDD[WikipediaArticle]): Int = rdd.aggregate(0)(
+    (occurrencesSoFar, secondArticle) =>
+      if (!secondArticle.mentionsLanguage(lang)) occurrencesSoFar else occurrencesSoFar + 1,
+    _ + _)
 
   /* Compute an inverted index of the set of articles, mapping each language
    * to the Wikipedia pages in which it occurs.
    */
-  def makeIndex(langs: List[String], rdd: RDD[WikipediaArticle]): RDD[(String, Iterable[WikipediaArticle])] = ???
+  def makeIndex(langs: List[String], rdd: RDD[WikipediaArticle]): RDD[(String, Iterable[WikipediaArticle])] = {
+    // Lesson: you cannot transform RDD inside Scala collections method. So need to somehow absorb the scala collection into RDD
+    rdd.flatMap(article =>
+      langs.filter(article.mentionsLanguage).
+        map(lang => (lang, article))).
+      groupByKey()
+  }
 
   /* (2) Compute the language ranking again, but now using the inverted index. Can you notice
    *     a performance improvement?
@@ -70,7 +82,12 @@ object WikipediaRanking {
    *   Note: this operation is long-running. It can potentially run for
    *   several seconds.
    */
-  def rankLangsUsingIndex(index: RDD[(String, Iterable[WikipediaArticle])]): List[(String, Int)] = ???
+  def rankLangsUsingIndex(index: RDD[(String, Iterable[WikipediaArticle])]): List[(String, Int)] = {
+    index.mapValues(articles => articles.size).collect().toList.sortBy {
+      case (_, count) => count
+    }(Ordering[Int].reverse)
+  }
+
 
   /* (3) Use `reduceByKey` so that the computation of the index and the ranking are combined.
    *     Can you notice an improvement in performance compared to measuring *both* the computation of the index
@@ -79,7 +96,16 @@ object WikipediaRanking {
    *   Note: this operation is long-running. It can potentially run for
    *   several seconds.
    */
-  def rankLangsReduceByKey(langs: List[String], rdd: RDD[WikipediaArticle]): List[(String, Int)] = ???
+  def rankLangsReduceByKey(langs: List[String], rdd: RDD[WikipediaArticle]): List[(String, Int)] = {
+    rdd.flatMap(article =>
+      langs.filter(article.mentionsLanguage).
+        map(lang => (lang, 1))).
+      reduceByKey {
+        case (firstCount, secondCount) => firstCount + secondCount
+      }.collect().sortBy {
+      case (_, count) => count
+    }(Ordering[Int].reverse).toList
+  }
 
   def timed[T](label: String, code: => T): T = {
     val start = System.currentTimeMillis()
@@ -87,5 +113,9 @@ object WikipediaRanking {
     val stop = System.currentTimeMillis()
     timing.append(s"Processing $label took ${stop - start} ms.\n")
     result
+  }
+
+  def getAllArticlesContainingLang(lang: String, rdd: RDD[WikipediaArticle]): RDD[WikipediaArticle] = {
+    rdd.filter(_.mentionsLanguage(lang))
   }
 }

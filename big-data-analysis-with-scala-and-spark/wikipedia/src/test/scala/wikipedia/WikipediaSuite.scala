@@ -1,15 +1,17 @@
 package wikipedia
 
-import org.scalatest.{FunSuite, BeforeAndAfterAll}
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-
-import org.apache.spark.SparkConf
-import org.apache.spark.SparkContext
-import org.apache.spark.SparkContext._
+import org.scalatest.{BeforeAndAfterAll, FunSuite}
 
 @RunWith(classOf[JUnitRunner])
 class WikipediaSuite extends FunSuite with BeforeAndAfterAll {
+
+  override def afterAll(): Unit = {
+    assert(initializeWikipediaRanking(), " -- did you fill in all the values in WikipediaRanking (conf, sc, wikiRdd)?")
+    import WikipediaRanking._
+    sc.stop()
+  }
 
   def initializeWikipediaRanking(): Boolean =
     try {
@@ -22,22 +24,18 @@ class WikipediaSuite extends FunSuite with BeforeAndAfterAll {
         false
     }
 
-  override def afterAll(): Unit = {
-    assert(initializeWikipediaRanking(), " -- did you fill in all the values in WikipediaRanking (conf, sc, wikiRdd)?")
-    import WikipediaRanking._
-    sc.stop()
+  // Conditions:
+  // (1) the language stats contain the same elements
+  // (2) they are ordered (and the order doesn't matter if there are several languages with the same count)
+  def assertEquivalentAndOrdered(given: List[(String, Int)], expected: List[(String, Int)]): Unit = {
+    // (1)
+    assertSameElements(given, expected)
+    // (2)
+    assert(
+      !(given zip given.tail).exists({ case ((_, occ1), (_, occ2)) => occ1 < occ2 }),
+      "The given elements are not in descending order"
+    )
   }
-
-  /**
-    * Creates a truncated string representation of a list, adding ", ...)" if there
-    * are too many elements to show
-    * @param l The list to preview
-    * @param n The number of elements to cut it at
-    * @return A preview of the list, containing at most n elements.
-    */
-  def previewList[A](l: List[A], n: Int = 10): String =
-    if (l.length <= n) l.toString
-    else l.take(n).toString.dropRight(1) + ", ...)"
 
   /**
     * Asserts that all the elements in a given list and an expected list are the same,
@@ -71,24 +69,22 @@ class WikipediaSuite extends FunSuite with BeforeAndAfterAll {
           |The given collection is missing some expected elements: ${previewList(missing.toList, 5)}""".stripMargin)
   }
 
-  // Conditions:
-  // (1) the language stats contain the same elements
-  // (2) they are ordered (and the order doesn't matter if there are several languages with the same count)
-  def assertEquivalentAndOrdered(given: List[(String, Int)], expected: List[(String, Int)]): Unit = {
-    // (1)
-    assertSameElements(given, expected)
-    // (2)
-    assert(
-      !(given zip given.tail).exists({ case ((_, occ1), (_, occ2)) => occ1 < occ2 }),
-      "The given elements are not in descending order"
-    )
-  }
+  /**
+    * Creates a truncated string representation of a list, adding ", ...)" if there
+    * are too many elements to show
+    * @param l The list to preview
+    * @param n The number of elements to cut it at
+    * @return A preview of the list, containing at most n elements.
+    */
+  def previewList[A](l: List[A], n: Int = 10): String =
+    if (l.length <= n) l.toString
+    else l.take(n).toString.dropRight(1) + ", ...)"
 
   test("'occurrencesOfLang' should work for (specific) RDD with one element") {
     assert(initializeWikipediaRanking(), " -- did you fill in all the values in WikipediaRanking (conf, sc, wikiRdd)?")
     import WikipediaRanking._
     val rdd = sc.parallelize(Seq(WikipediaArticle("title", "Java Jakarta")))
-    val res = (occurrencesOfLang("Java", rdd) == 1)
+    val res = occurrencesOfLang("Java", rdd) == 1
     assert(res, "occurrencesOfLang given (specific) RDD with one element should equal to 1")
   }
 
@@ -129,7 +125,7 @@ class WikipediaSuite extends FunSuite with BeforeAndAfterAll {
     val rdd = sc.parallelize(articles)
     val index = makeIndex(langs, rdd)
     val ranked = rankLangsUsingIndex(index)
-    val res = (ranked.head._1 == "Scala")
+    val res = ranked.head._1 == "Scala"
     assert(res)
   }
 
@@ -146,7 +142,7 @@ class WikipediaSuite extends FunSuite with BeforeAndAfterAll {
       )
     val rdd = sc.parallelize(articles)
     val ranked = rankLangsReduceByKey(langs, rdd)
-    val res = (ranked.head._1 == "Java")
+    val res = ranked.head._1 == "Java"
     assert(res)
   }
 
