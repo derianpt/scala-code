@@ -77,3 +77,4 @@ target/
 .idea/libraries
 
 big-data-analysis-with-scala-and-spark/stackoverflow/\.idea/libraries/
+big-data-analysis-with-scala-and-spark/stackoverflow/src/main/resources/stackoverflow
