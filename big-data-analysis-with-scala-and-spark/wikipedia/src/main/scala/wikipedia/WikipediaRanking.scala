@@ -69,7 +69,11 @@ object WikipediaRanking {
    * to the Wikipedia pages in which it occurs.
    */
   def makeIndex(langs: List[String], rdd: RDD[WikipediaArticle]): RDD[(String, Iterable[WikipediaArticle])] = {
-    // Lesson: you cannot transform RDD inside Scala collections method. So need to somehow absorb the scala collection into RDD
+
+    // Lessons:
+    // 1) You cannot transform an RDD inside a Scala collection method, so need to somehow use the scala collection in RDD transformation
+    // 2) flatMap always expects a TraversableOnce, which RDD does not implement, so you'll need to produce these nested lists
+    // using scala collection.
     rdd.flatMap(article =>
       langs.filter(article.mentionsLanguage).
         map(lang => (lang, article))).
