@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stackoverflow_7659.iml" filepath="$PROJECT_DIR$/.idea/modules/stackoverflow_7659.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stackoverflow_7659-build.iml" filepath="$PROJECT_DIR$/.idea/modules/stackoverflow_7659-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bigdata-stackoverflow.iml" filepath="$PROJECT_DIR$/.idea/modules/bigdata-stackoverflow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bigdata-stackoverflow-build.iml" filepath="$PROJECT_DIR$/.idea/modules/bigdata-stackoverflow-build.iml" />
     </modules>
   </component>
 </project>

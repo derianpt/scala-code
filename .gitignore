@@ -75,3 +75,5 @@ fabric.properties
 target/
 .idea/sonarlint/issuestore
 .idea/libraries
+
+big-data-analysis-with-scala-and-spark/stackoverflow/\.idea/libraries/
