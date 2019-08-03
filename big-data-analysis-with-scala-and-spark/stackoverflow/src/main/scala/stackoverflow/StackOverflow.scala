@@ -21,9 +21,9 @@ object StackOverflow extends StackOverflow {
     val lines   = sc.textFile("src/main/resources/stackoverflow/stackoverflow.csv")
     val raw     = rawPostings(lines)
     val grouped = groupedPostings(raw)
-    val scored = scoredPostings(grouped).sample(false, 0.1)
+    val scored = scoredPostings(grouped)
     val vectors = vectorPostings(scored)
-    //    assert(vectors.count() == 2121822, "Incorrect number of vectors: " + vectors.count())
+    assert(vectors.count() == 2121822, "Incorrect number of vectors: " + vectors.count())
 
     val means = kmeans(sampleVectors(vectors), vectors, debug = true)
     val results = clusterResults(means, vectors)
@@ -42,7 +42,7 @@ class StackOverflow extends Serializable {
       "Objective-C", "Perl", "Scala", "Haskell", "MATLAB", "Clojure", "Groovy")
 
   /** K-means parameter: How "far apart" languages should be for the kmeans algorithm? */
-  def langSpread = 1
+  def langSpread = 50000
   assert(langSpread > 0, "If langSpread is zero we can't recover the language from the input data!")
 
   /** K-means parameter: Number of clusters */
@@ -147,7 +147,7 @@ class StackOverflow extends Serializable {
     // for each tuple, find the lang of the question, calculate the lang index, and generate a new list of lang index to high score
     scored.map {
       case (question, highScore) => (firstLangInTag(question.tags, langs).get * langSpread, highScore)
-    }
+    }.cache()
   }
 
 
@@ -206,20 +206,22 @@ class StackOverflow extends Serializable {
     val meanToVectorRDD = vectors.map(vector => {
       val closestMeanIndex = findClosest(vector, means)
       (closestMeanIndex, vector)
-    })
+    }).persist()
 
     // Calculate the average for each cluster and set them as the new list of means
-    // Step 1: Sum up all vector x&y values in cluster, keeping track of total count of vectors
-    //    val meanToClusterTotalRDD = meanToVectorRDD.aggregateByKey((0, 0, 0))(
-    //      (first, second) => (first._1 + second._1, first._2 + second._2, first._3 + 1),
-    //      (fromFirstCluster, fromSecondCluster) => (fromFirstCluster._1 + fromSecondCluster._1, fromFirstCluster._2 + fromSecondCluster._2, fromFirstCluster._3 + fromSecondCluster._3)
-    //    )
-    val meanToClusterRDD = meanToVectorRDD.groupByKey()
-
-    // Step 2: For each cluster, produce a new tuple that is the average of all x and y values of the vector.
-    // and then UPDATE the index of the original mean. Either using mean(idx) = or mean.update(idx) =
+    val meanToClusterRDD = meanToVectorRDD.groupByKey().persist()
     val newMeans = means.clone()
-    meanToClusterRDD.mapValues(averageVectors).foreach {
+
+    /**
+     * IMPORTANT: Always call collect() before foreach() to gather data back to the master node
+     * for assignment or printing. This is needed because when foreach is called, the function
+     * closure will be serialized and sent to the worker nodes.
+     *
+     * That means, the worker nodes will only have a COPY of newMeans and not the real newMeans
+     *
+     * See: http://spark.apache.org/docs/latest/rdd-programming-guide.html#local-vs-cluster-modes
+     */
+    meanToClusterRDD.mapValues(averageVectors).collect().foreach {
       case (meanIndex, clusterAvg) =>
         newMeans(meanIndex) = clusterAvg
     }

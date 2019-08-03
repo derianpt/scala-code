@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0313edb9-30ec-4820-bd9c-1977ee382b22" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sbt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/stackoverflow/StackOverflow.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/stackoverflow/StackOverflow.scala" afterDir="false" />
@@ -46,8 +47,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/stackoverflow/StackOverflow.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="346" column="67" selection-start-line="346" selection-start-column="65" selection-end-line="346" selection-end-column="67" />
+            <state relative-caret-position="240">
+              <caret line="215" column="56" selection-start-line="215" selection-start-column="56" selection-end-line="215" selection-end-column="56" />
               <folding>
                 <element signature="e#23#54#0" expanded="true" />
               </folding>
@@ -56,18 +57,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12-sources.jar!/scala/collection/SeqLike.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9180">
-              <caret line="622" column="6" selection-start-line="622" selection-start-column="6" selection-end-line="622" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/stackoverflow/StackOverflowSuite.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="221">
               <caret line="13" selection-start-line="13" selection-end-line="13" />
               <folding>
                 <element signature="e#23#73#0" expanded="true" />
@@ -98,6 +90,11 @@
       <find>(550000,4)</find>
       <find>newMeans</find>
       <find>distinctOriginalMeans</find>
+      <find>print</find>
+      <find>collect</find>
+      <find>.collect</find>
+      <find>.cache</find>
+      <find>vectors</find>
     </findStrings>
     <replaceStrings>
       <replace>means</replace>
@@ -114,11 +111,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1366" />
-    <option name="y" value="27" />
-    <option name="width" value="960" />
-    <option name="height" value="1053" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
+    <option name="width" value="1680" />
+    <option name="height" value="1028" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -130,62 +126,41 @@
         <subPane>
           <expand>
             <path>
-              <item name="stackoverflow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bigdata-stackoverflow" type="b2602c69:ProjectViewProjectNode" />
               <item name="stackoverflow" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="stackoverflow" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stackoverflow" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stackoverflow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bigdata-stackoverflow" type="b2602c69:ProjectViewProjectNode" />
               <item name="stackoverflow" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="stackoverflow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bigdata-stackoverflow" type="b2602c69:ProjectViewProjectNode" />
               <item name="stackoverflow" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="stackoverflow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bigdata-stackoverflow" type="b2602c69:ProjectViewProjectNode" />
               <item name="stackoverflow" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="stackoverflow" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="stackoverflow" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bigdata-stackoverflow" type="b2602c69:ProjectViewProjectNode" />
               <item name="stackoverflow" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stackoverflow" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stackoverflow" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stackoverflow" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stackoverflow" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="stackoverflow" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -196,10 +171,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.1375516" />
-    <property name="settings.editor.selected.configurable" value="sbt.project.settings.configurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -214,7 +189,22 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.StackOverflow">
+    <configuration name="StackOverflow (1)" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="stackoverflow.StackOverflow" />
+      <module name="big-data-analysis-with-scala-and-spark-bigdata-stackoverflow" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="stackoverflow.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StackOverflow" type="Application" factoryName="Application" temporary="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="stackoverflow.StackOverflow" />
       <module name="bigdata-stackoverflow" />
       <extension name="coverage">
@@ -245,9 +235,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.StackOverflow" />
+      <item itemvalue="Application.StackOverflow (1)" />
+      <item itemvalue="ScalaTest.StackOverflowSuite" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.StackOverflow" />
+        <item itemvalue="Application.StackOverflow (1)" />
         <item itemvalue="ScalaTest.StackOverflowSuite" />
       </list>
     </recent_temporary>
@@ -265,7 +261,7 @@
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="root [file:/home/balibone/GitRepos/scala-code/big-data-analysis-with-scala-and-spark/stackoverflow/]" />
+                <option name="name" value="root [file:/Users/derian.tungka/GitRepos/scala-code/big-data-analysis-with-scala-and-spark/stackoverflow/]" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
               <ExternalProjectPojo>
@@ -279,7 +275,6 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="18460339568000" />
         <entry key="$PROJECT_DIR$/build.sbt" value="1229958298" />
         <entry key="$PROJECT_DIR$/project/CommonBuild.scala" value="2286689913" />
         <entry key="$PROJECT_DIR$/project/Courses.scala" value="1290868088" />
@@ -318,6 +313,8 @@
       <workItem from="1564658805155" duration="623000" />
       <workItem from="1564665465926" duration="23225000" />
       <workItem from="1564841315352" duration="966000" />
+      <workItem from="1564843594105" duration="6000" />
+      <workItem from="1564843614965" duration="6957000" />
     </task>
     <servers />
   </component>
@@ -328,13 +325,13 @@
   </component>
   <component name="TimeTrackingManager">
     <option name="enabled" value="true" />
-    <option name="totallyTimeSpent" value="32697000" />
+    <option name="totallyTimeSpent" value="39660000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1366" y="25" width="1920" height="1055" extended-state="6" />
+    <frame x="0" y="22" width="1680" height="1028" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25773746" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26373628" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -343,26 +340,28 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32905984" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.3297414" />
-      <window_info anchor="bottom" id="sbt-shell-toolwindow" order="8" weight="0.32937366" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.32905984" />
+      <window_info active="true" anchor="bottom" id="sbt-shell-toolwindow" order="8" visible="true" weight="0.32905984" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Terminal" order="14" weight="0.37149027" />
+      <window_info anchor="bottom" id="Terminal" order="14" weight="0.3707265" />
       <window_info anchor="bottom" id="Messages" order="15" />
+      <window_info anchor="bottom" id="CheckStyle" order="16" />
+      <window_info anchor="bottom" id="SonarLint" order="17" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Maven" order="3" />
       <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="sbt" order="5" weight="0.32977587" />
+      <window_info anchor="right" id="sbt" order="5" weight="0.32967034" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Time Tracking" order="7" weight="0.32977587" />
       <window_info anchor="right" id="Gradle" order="8" />
@@ -370,19 +369,14 @@
       <window_info anchor="right" id="Palette&#9;" order="10" />
       <window_info anchor="right" id="Theme Preview" order="11" />
       <window_info anchor="right" id="Bean Validation" order="12" />
+      <window_info anchor="right" id="SciView" order="13" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12-sources.jar!/scala/Tuple2.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12-sources.jar!/scala/Tuple2.scala" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/idea.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -390,20 +384,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="jrt:///usr/lib/jvm/java-11-openjdk-amd64!/java.base/java/lang/String.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="838" column="25" selection-start-line="838" selection-start-column="25" selection-end-line="838" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12-sources.jar!/scala/package.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="56" column="6" selection-start-line="56" selection-start-column="6" selection-end-line="56" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jrt:///usr/lib/jvm/java-11-openjdk-amd64!/java.base/java/lang/String.class" />
+    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12-sources.jar!/scala/package.scala" />
     <entry file="file://$PROJECT_DIR$/src/main/scala/stackoverflow/package.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -411,26 +393,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12-sources.jar!/scala/collection/SeqLike.scala" />
     <entry file="file://$PROJECT_DIR$/src/main/scala/stackoverflow/StackOverflow.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="346" column="67" selection-start-line="346" selection-start-column="65" selection-end-line="346" selection-end-column="67" />
+        <state relative-caret-position="240">
+          <caret line="215" column="56" selection-start-line="215" selection-start-column="56" selection-end-line="215" selection-end-column="56" />
           <folding>
             <element signature="e#23#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12-sources.jar!/scala/collection/SeqLike.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9180">
-          <caret line="622" column="6" selection-start-line="622" selection-start-column="6" selection-end-line="622" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/stackoverflow/StackOverflowSuite.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="221">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="e#23#73#0" expanded="true" />
@@ -441,9 +417,32 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>scala-sdk-2.13.0</last-edited>
+          <last-edited>Python 2.7 (tvlk-eci-testdata-generator) interpreter library</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -460,6 +459,19 @@
             <option name="proportions">
               <list>
                 <option value="0.1375516" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>project-bigdata-stackoverflow-build</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.48153618" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
