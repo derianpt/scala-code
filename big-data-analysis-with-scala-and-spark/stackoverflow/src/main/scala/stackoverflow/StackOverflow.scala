@@ -21,9 +21,9 @@ object StackOverflow extends StackOverflow {
     val lines   = sc.textFile("src/main/resources/stackoverflow/stackoverflow.csv")
     val raw     = rawPostings(lines)
     val grouped = groupedPostings(raw)
-    val scored  = scoredPostings(grouped)
+    val scored = scoredPostings(grouped).sample(false, 0.1)
     val vectors = vectorPostings(scored)
-    assert(vectors.count() == 2121822, "Incorrect number of vectors: " + vectors.count())
+    //    assert(vectors.count() == 2121822, "Incorrect number of vectors: " + vectors.count())
 
     val means = kmeans(sampleVectors(vectors), vectors, debug = true)
     val results = clusterResults(means, vectors)
@@ -42,7 +42,7 @@ class StackOverflow extends Serializable {
       "Objective-C", "Perl", "Scala", "Haskell", "MATLAB", "Clojure", "Groovy")
 
   /** K-means parameter: How "far apart" languages should be for the kmeans algorithm? */
-  def langSpread = 50000
+  def langSpread = 1
   assert(langSpread > 0, "If langSpread is zero we can't recover the language from the input data!")
 
   /** K-means parameter: Number of clusters */
@@ -210,22 +210,19 @@ class StackOverflow extends Serializable {
 
     // Calculate the average for each cluster and set them as the new list of means
     // Step 1: Sum up all vector x&y values in cluster, keeping track of total count of vectors
-    val meanToClusterTotalRDD = meanToVectorRDD.aggregateByKey((0, 0, 0))(
-      (first, second) => (first._1 + second._1, first._2 + second._2, first._3 + 1),
-      (fromFirstCluster, fromSecondCluster) => (fromFirstCluster._1 + fromSecondCluster._1, fromFirstCluster._2 + fromSecondCluster._2, fromFirstCluster._3 + fromSecondCluster._3)
-    )
+    //    val meanToClusterTotalRDD = meanToVectorRDD.aggregateByKey((0, 0, 0))(
+    //      (first, second) => (first._1 + second._1, first._2 + second._2, first._3 + 1),
+    //      (fromFirstCluster, fromSecondCluster) => (fromFirstCluster._1 + fromSecondCluster._1, fromFirstCluster._2 + fromSecondCluster._2, fromFirstCluster._3 + fromSecondCluster._3)
+    //    )
+    val meanToClusterRDD = meanToVectorRDD.groupByKey()
 
     // Step 2: For each cluster, produce a new tuple that is the average of all x and y values of the vector.
     // and then UPDATE the index of the original mean. Either using mean(idx) = or mean.update(idx) =
     val newMeans = means.clone()
-    meanToClusterTotalRDD.foreach {
-      case (meanIndex, clusterTotals) =>
-        val totalVectorsInCluster = clusterTotals._3
-        newMeans(meanIndex) = (clusterTotals._1 / totalVectorsInCluster, clusterTotals._2 / totalVectorsInCluster)
+    meanToClusterRDD.mapValues(averageVectors).foreach {
+      case (meanIndex, clusterAvg) =>
+        newMeans(meanIndex) = clusterAvg
     }
-
-    println("originalMeans", means.length, means.mkString(","))
-    println("newMeans", newMeans.length, newMeans.mkString(","))
 
     val distance = euclideanDistance(means, newMeans)
 
@@ -330,23 +327,21 @@ class StackOverflow extends Serializable {
     val closestGrouped = closest.groupByKey()
 
     val median = closestGrouped.mapValues { vs =>
-      // Get label of the most popular language
-      val langLabel: String = {
-        val langIndex =
-          vs.groupBy {
-            case (langInd, _) => langInd
-          }.toList.maxBy {
-            case (_, vectorList) => vectorList.size
-          }._1
-        langs(langIndex / langSpread)
+
+      val dominantLangToAnswers: (LangIndex, Iterable[(LangIndex, HighScore)]) = vs.groupBy {
+        case (langInd, _) => langInd
+      }.toList.maxBy {
+        case (_, vectorList) => vectorList.size
       }
 
-      // Get percentage of the questions in the most common language
-      val langPercent: Double = {
-        val langIndexOfDominant = langs.indexOf(langLabel) * langSpread
-        val numOfDominantLangQuestions = vs.count(tuple => tuple._1 == langIndexOfDominant)
-        numOfDominantLangQuestions / vs.size
+      // Get label of the most popular language
+      val langLabel: String = {
+        val mostPopularLangIndex = dominantLangToAnswers._1
+        langs(mostPopularLangIndex / langSpread)
       }
+
+      // Get percentage of the answers that belong to the dominant language
+      val langPercent: Double = (dominantLangToAnswers._2.size.toDouble / vs.size) * 100
 
       // Get size of cluster
       val clusterSize: Int = vs.size
@@ -356,7 +351,14 @@ class StackOverflow extends Serializable {
         val listOfScores = vs.map {
           case (_, highScore) => highScore
         }.toList.sorted
-        listOfScores(listOfScores.length / 2)
+        val midIndex = listOfScores.length / 2
+
+        // if even sized, get (mid + mid-1) / 2
+        if (listOfScores.length % 2 == 0) {
+          (listOfScores(midIndex) + listOfScores(midIndex - 1)) / 2
+        } else {
+          listOfScores(midIndex)
+        }
       }
 
       (langLabel, langPercent, clusterSize, medianScore)
