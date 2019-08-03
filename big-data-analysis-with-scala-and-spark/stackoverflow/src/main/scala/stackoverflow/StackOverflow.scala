@@ -202,9 +202,31 @@ class StackOverflow extends Serializable {
 
   /** Main kmeans computation */
   @tailrec final def kmeans(means: Array[(Int, Int)], vectors: RDD[(Int, Int)], iter: Int = 1, debug: Boolean = false): Array[(Int, Int)] = {
-    val newMeans = means.clone() // you need to compute newMeans
+    // For each vector, take the mean that is the closest to it and assign it.
+    val meanToVectorRDD = vectors.map(vector => {
+      val closestMeanIndex = findClosest(vector, means)
+      (closestMeanIndex, vector)
+    })
 
-    // TODO: Fill in the newMeans array
+    // Calculate the average for each cluster and set them as the new list of means
+    // Step 1: Sum up all vector x&y values in cluster, keeping track of total count of vectors
+    val meanToClusterTotalRDD = meanToVectorRDD.aggregateByKey((0, 0, 0))(
+      (first, second) => (first._1 + second._1, first._2 + second._2, first._3 + 1),
+      (fromFirstCluster, fromSecondCluster) => (fromFirstCluster._1 + fromSecondCluster._1, fromFirstCluster._2 + fromSecondCluster._2, fromFirstCluster._3 + fromSecondCluster._3)
+    )
+
+    // Step 2: For each cluster, produce a new tuple that is the average of all x and y values of the vector.
+    // and then UPDATE the index of the original mean. Either using mean(idx) = or mean.update(idx) =
+    val newMeans = means.clone()
+    meanToClusterTotalRDD.foreach {
+      case (meanIndex, clusterTotals) =>
+        val totalVectorsInCluster = clusterTotals._3
+        newMeans(meanIndex) = (clusterTotals._1 / totalVectorsInCluster, clusterTotals._2 / totalVectorsInCluster)
+    }
+
+    println("originalMeans", means.length, means.mkString(","))
+    println("newMeans", newMeans.length, newMeans.mkString(","))
+
     val distance = euclideanDistance(means, newMeans)
 
     if (debug) {
@@ -212,9 +234,9 @@ class StackOverflow extends Serializable {
                  |  * current distance: $distance
                  |  * desired distance: $kmeansEta
                  |  * means:""".stripMargin)
-      for (idx <- 0 until kmeansKernels)
-      println(f"   ${means(idx).toString}%20s ==> ${newMeans(idx).toString}%20s  " +
-              f"  distance: ${euclideanDistance(means(idx), newMeans(idx))}%8.0f")
+      for (idx <- means.indices)
+        println(f"   ${means(idx).toString}%20s ==> ${newMeans(idx).toString}%20s  " +
+          f"  distance: ${euclideanDistance(means(idx), newMeans(idx))}%8.0f")
     }
 
     if (converged(distance))
