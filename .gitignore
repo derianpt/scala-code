@@ -78,3 +78,6 @@ target/
 
 big-data-analysis-with-scala-and-spark/stackoverflow/\.idea/libraries/
 big-data-analysis-with-scala-and-spark/stackoverflow/src/main/resources/stackoverflow
+big-data-analysis-with-scala-and-spark/timeusage/.idea/libraries
+atussum.csv
+big-data-analysis-with-scala-and-spark/stackoverflow/.idea/sonarlint/issuestore
