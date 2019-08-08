@@ -230,8 +230,12 @@ object TimeUsage {
   /** @return SQL query equivalent to the transformation implemented in `timeUsageGrouped`
     * @param viewName Name of the SQL view to use
     */
-  def timeUsageGroupedSqlQuery(viewName: String): String =
-    ???
+  def timeUsageGroupedSqlQuery(viewName: String): String = {
+    s"SELECT working, sex, age, round(AVG(primaryNeeds),1) AS primaryNeeds, round(AVG(work),1) AS work, round(AVG(other),1) AS other" +
+      s"FROM $viewName" +
+      s"GROUP BY working, sex, age" +
+      s"ORDER BY working, sex, age"
+  }
 
   /**
     * @return A `Dataset[TimeUsageRow]` from the “untyped” `DataFrame`
@@ -240,8 +244,16 @@ object TimeUsage {
     * Hint: you should use the `getAs` method of `Row` to look up columns and
     * cast them at the same time.
     */
-  def timeUsageSummaryTyped(timeUsageSummaryDf: DataFrame): Dataset[TimeUsageRow] =
-    ???
+  def timeUsageSummaryTyped(timeUsageSummaryDf: DataFrame): Dataset[TimeUsageRow] = {
+    timeUsageSummaryDf.map(row => TimeUsageRow(
+      row.getAs[String]("working"),
+      row.getAs[String]("sex"),
+      row.getAs[String]("age"),
+      row.getAs[Double]("primaryNeeds"),
+      row.getAs[Double]("work"),
+      row.getAs[Double]("other")
+    ))
+  }
 
   /**
     * @return Same as `timeUsageGrouped`, but using the typed API when possible
@@ -255,7 +267,15 @@ object TimeUsage {
     * Hint: you should use the `groupByKey` and `typed.avg` methods.
     */
   def timeUsageGroupedTyped(summed: Dataset[TimeUsageRow]): Dataset[TimeUsageRow] = {
-    ???
+    summed.
+      groupByKey(row => (row.working, row.sex, row.age))
+      .agg(
+        round(avg($"primaryNeeds"), 1).as("primaryNeeds").as[Double],
+        round(avg($"work"), 1).as("work").as[Double],
+        round(avg($"other"), 1).as("other").as[Double]
+      ).map(groupedRow =>
+      TimeUsageRow(groupedRow._1._1, groupedRow._1._2, groupedRow._1._3, groupedRow._2, groupedRow._3, groupedRow._4))
+      .orderBy($"primaryNeeds", $"work", $"other")
   }
 }
 

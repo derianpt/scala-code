@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c1011df-5079-41a0-90b7-f891662809ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/saveactions_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stackoverflow/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stackoverflow/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stackoverflow/.idea/scala_compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stackoverflow/.idea/scala_compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../stackoverflow/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../stackoverflow/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sbt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/timeusage/TimeUsage.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/timeusage/TimeUsage.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
@@ -83,8 +77,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/timeusage/TimeUsage.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="216" column="54" selection-start-line="216" selection-start-column="54" selection-end-line="216" selection-end-column="54" />
+            <state relative-caret-position="414">
+              <caret line="276" column="117" lean-forward="true" selection-start-line="276" selection-start-column="117" selection-end-line="276" selection-end-column="117" />
               <folding>
                 <element signature="e#19#45#0" expanded="true" />
               </folding>
@@ -523,12 +517,12 @@
       <workItem from="1565107218399" duration="1254000" />
       <workItem from="1565157390982" duration="88000" />
       <workItem from="1565157512451" duration="10043000" />
-      <workItem from="1565253479067" duration="3465000" />
+      <workItem from="1565253479067" duration="6228000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14850000" />
+    <option name="totallyTimeSpent" value="17613000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="1028" extended-state="6" />
@@ -652,8 +646,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/timeusage/TimeUsage.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="216" column="54" selection-start-line="216" selection-start-column="54" selection-end-line="216" selection-end-column="54" />
+        <state relative-caret-position="414">
+          <caret line="276" column="117" lean-forward="true" selection-start-line="276" selection-start-column="117" selection-end-line="276" selection-end-column="117" />
           <folding>
             <element signature="e#19#45#0" expanded="true" />
           </folding>
