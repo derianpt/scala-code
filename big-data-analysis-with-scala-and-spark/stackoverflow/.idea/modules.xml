@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/big-data-analysis-with-scala-and-spark-bigdata-stackoverflow.iml" filepath="$PROJECT_DIR$/.idea/modules/big-data-analysis-with-scala-and-spark-bigdata-stackoverflow.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/bigdata-stackoverflow.iml" filepath="$PROJECT_DIR$/.idea/modules/bigdata-stackoverflow.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/project-bigdata-stackoverflow-build.iml" filepath="$PROJECT_DIR$/.idea/modules/project-bigdata-stackoverflow-build.iml" />
     </modules>
