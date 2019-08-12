@@ -65,10 +65,10 @@ object TimeUsage {
     * @param columnNames Column names of the DataFrame
     */
   def dfSchema(columnNames: List[String]): StructType = {
-    val schemaFields = columnNames.map{
-      case firstColumn@"tucaseid" => StructField(firstColumn, StringType, nullable = false)
-      case otherColumns@_ => StructField(otherColumns, DoubleType, nullable = false)
-    }
+    val firstColumnSchema = StructField(columnNames.head, StringType, nullable = false)
+    val otherColumnsSchema = columnNames.tail.map(StructField(_, DoubleType, nullable = false))
+
+    val schemaFields = firstColumnSchema :: otherColumnsSchema
 
     StructType(schemaFields)
   }
@@ -231,10 +231,12 @@ object TimeUsage {
     * @param viewName Name of the SQL view to use
     */
   def timeUsageGroupedSqlQuery(viewName: String): String = {
-    s"SELECT working, sex, age, round(AVG(primaryNeeds),1) AS primaryNeeds, round(AVG(work),1) AS work, round(AVG(other),1) AS other" +
-      s"FROM $viewName" +
-      s"GROUP BY working, sex, age" +
-      s"ORDER BY working, sex, age"
+    s"""
+       |SELECT working, sex, age, round(AVG(primaryNeeds),1) AS primaryNeeds, round(AVG(work),1) AS work, round(AVG(other),1) AS other
+       |FROM $viewName
+       |GROUP BY working, sex, age
+       |ORDER BY working, sex, age
+     """.stripMargin
   }
 
   /**
@@ -267,15 +269,18 @@ object TimeUsage {
     * Hint: you should use the `groupByKey` and `typed.avg` methods.
     */
   def timeUsageGroupedTyped(summed: Dataset[TimeUsageRow]): Dataset[TimeUsageRow] = {
-    summed.
-      groupByKey(row => (row.working, row.sex, row.age))
+    summed
+      .groupByKey(row => (row.working, row.sex, row.age))
       .agg(
         round(avg($"primaryNeeds"), 1).as("primaryNeeds").as[Double],
         round(avg($"work"), 1).as("work").as[Double],
         round(avg($"other"), 1).as("other").as[Double]
-      ).map(groupedRow =>
-      TimeUsageRow(groupedRow._1._1, groupedRow._1._2, groupedRow._1._3, groupedRow._2, groupedRow._3, groupedRow._4))
-      .orderBy($"primaryNeeds", $"work", $"other")
+      )
+      .map {
+        case (keys, primaryNeeds, work, other) =>
+          TimeUsageRow(keys._1, keys._2, keys._3, primaryNeeds, work, other)
+      }
+      .orderBy("working", "sex", "age")
   }
 }
 
